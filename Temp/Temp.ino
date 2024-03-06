@@ -11,6 +11,15 @@ bool reachedSetPoint = false;
 unsigned long startTime = 0;
 int SET_POINT = 30;
 
+void beep(int times) {
+    for (int i = 0; i < times; i++) {
+        digitalWrite(BEEPER_PIN, HIGH);
+        delay(100);
+        digitalWrite(BEEPER_PIN, LOW);
+        delay(100);
+    }
+}
+
 void setup() {
     Serial.begin(9600);
     pinMode(HEATER_PIN, OUTPUT);
@@ -26,15 +35,6 @@ void setup() {
 
     beep(2);  // 加热器开启时，蜂鸣器响两声
     digitalWrite(HEATER_PIN, HIGH);
-}
-
-void beep(int times) {
-    for (int i = 0; i < times; i++) {
-        digitalWrite(BEEPER_PIN, HIGH);
-        delay(100);
-        digitalWrite(BEEPER_PIN, LOW);
-        delay(100);
-    }
 }
 
 void loop() {
